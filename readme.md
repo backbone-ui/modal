@@ -48,8 +48,7 @@ In addition to adding your own methods, you can call or extend any of the follow
 
 ## Credits 
 
-Created by Makis Tracend ([http://github.com/tracend](@tracend)) for [Makesites.org](http://makesites.org)
+Created by Makis Tracend ([@tracend](http://github.com/tracend)) for [Makesites.org](http://makesites.org)
 
 Distributed under the [MIT license](http://makesites.org/license/mit.txt)
-
 
