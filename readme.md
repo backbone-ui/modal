@@ -4,9 +4,9 @@ A simple way to extend your website content using popup containers
 
 ## Dependendies
 
-* Backbone.js
-* Underscore.js
-* Handlebars.js
+* [Backbone.js](http://backbonejs.org/)
+* [Underscore.js](http://underscorejs.org/)
+* [Handlebars.js](http://handlebarsjs.com/)
 
 ## Usage
 
@@ -21,7 +21,7 @@ APP.Views.Popup = Backbone.Popup.extend({
 
 Note that the "#popup" container needs to be available in the dom before initializing the popup view. 
 
-It is dvised that you only intantiate the popup view once and reuse the same instance for different content. For example: 
+It is advised that you only intantiate the popup view once and reuse the same instance for different content. For example: 
 ```
 this.popup = new APP.Views.Popup();
 
@@ -48,10 +48,8 @@ In addition to adding your own methods, you can call or extend any of the follow
 
 ## Credits 
 
-Created by Makis Tracend (@tracend) for Makesites.org 
+Created by Makis Tracend ([http://github.com/tracend](@tracend)) for [Makesites.org](http://makesites.org)
 
-Distributed under the MIT license:
-http://makesites.org/license/mit.txt
-
+Distributed under the [MIT license](http://makesites.org/license/mit.txt)
 
 
