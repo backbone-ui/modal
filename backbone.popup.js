@@ -1,4 +1,4 @@
-// jQuery contentEditable() plugin
+// Backbone.js Popup extension
 //
 // Created by: Makis Tracend (@tracend)
 // Source: https://gist.github.com/3446570
