@@ -34,7 +34,6 @@
 		}, 
 		render: function(){
 			var self = this;
-			console.log( this.data.toJSON() );
 			var html = this.template[this.type]( this.data.toJSON() );
 			$(this.el).html( html );
 			// post-processing
