@@ -9,6 +9,13 @@ A simple way to extend your website content using modal containers
 * [Handlebars.js](http://handlebarsjs.com/)
 * [Backbone.APP](http://github.com/makesites/backbone-app)
 
+## Install
+
+Using Bower: 
+```
+bower install backbone.modal
+```
+
 ## Usage
 
 After you include the script in your dependency stack the popup will be available to extend with your options. Example: 
