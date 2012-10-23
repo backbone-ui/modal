@@ -1,20 +1,21 @@
-# Backbone.js Popup extension
+# Backbone.js Modal extension
 
-A simple way to extend your website content using popup containers
+A simple way to extend your website content using modal containers
 
 ## Dependendies
 
 * [Backbone.js](http://backbonejs.org/)
 * [Underscore.js](http://underscorejs.org/)
 * [Handlebars.js](http://handlebarsjs.com/)
+* [Backbone.APP](http://github.com/makesites/backbone-app)
 
 ## Usage
 
 After you include the script in your dependency stack the popup will be available to extend with your options. Example: 
 ```
-APP.Views.Popup = Backbone.Popup.extend({
+APP.Views.SimpleModal = APP.Views.Modal.extend({
 	options: {
-		html: "/assets/html/popup.html"
+		html: "/assets/html/simple.html"
 	}
 });
 ```
@@ -23,11 +24,11 @@ Note that the "#popup" container needs to be available in the dom before initial
 
 It is advised that you only intantiate the popup view once and reuse the same instance for different content. For example: 
 ```
-this.popup = new APP.Views.Popup();
+this.modal = new APP.Views.SimpleModal();
 
 //...and later in your code...
 
-this.popup.update(model)
+this.modal.update(model)
 ```
 
 
