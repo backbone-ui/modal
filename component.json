@@ -1,6 +1,6 @@
 {
   "name": "Backbone Modal",
-  "version": "0.2.0",
-  "main": ["./lib/backbone.modal.js"],
-  "dependencies": { "backbone", "underscore", "backbone.app" }
+  "version": "0.3.0",
+  "main": ["./backbone.modal.js"],
+  "dependencies": { "backbone", "underscore", "jquery" }
 }

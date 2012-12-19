@@ -3,11 +3,15 @@
 // Created by: Makis Tracend (@tracend)
 // Source: https://gist.github.com/3446570
 //
-// Licensed under the MIT license: http://makesites.org/license/mit.txt
+// Licensed under the MIT license: http://makesites.org/license/mit
 
 (function(_, Backbone) {
+	
+	// conditioning the existance of the Backbone APP()
+	var View = ( APP ) ? APP.View : Backbone.View;
+	var Parent = ( APP ) ? APP.Views : Backbone;
 
-	Backbone.Popup = Backbone.View.extend({
+	Parent.Modal = View.extend({
 		el: "#popup",
 		template : {}, 
 		// events
