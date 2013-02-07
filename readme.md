@@ -1,3 +1,7 @@
+
+# Note: Development of this Extension has moved to Backbone UI: 
+http://github.com/backbone-ui/modal.git
+
 # Backbone.js Modal extension
 
 A simple way to extend your website content using modal containers
