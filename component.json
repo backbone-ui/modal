@@ -1,7 +1,7 @@
 {
   "name": "backbone-ui-modal",
   "version": "0.3.2",
-  "main": ["./backbone.modal.js"],
+  "main": ["./js/backbone.ui.modal.js"],
   "dependencies": { 
 	  "backbone" : "*", 
 	  "underscore" : "*", 

@@ -1,17 +1,21 @@
 // Backbone.js Modal extension
 //
 // Created by: Makis Tracend (@tracend)
-// Source: https://gist.github.com/3446570
+// Source: https://github.com/backbone-ui/modal
 //
-// Licensed under the MIT license: http://makesites.org/license/mit
+// Licensed under the MIT license: 
+// http://makesites.org/licenses/MIT
 
 (function(_, Backbone) {
 	
+	// fallbacks
+	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
+	
 	// conditioning the existance of the Backbone APP()
-	var View = ( APP ) ? APP.View : Backbone.View;
-	var Parent = ( APP ) ? APP.Views : Backbone;
+	//var View = ( APP ) ? APP.View : Backbone.View;
+	//var Parent = ( APP ) ? APP.Views : Backbone;
 
-	Parent.Modal = View.extend({
+	Backbone.UI.Modal = Backbone.View.extend({
 		el: "#popup",
 		template : {}, 
 		// events

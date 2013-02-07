@@ -13,7 +13,7 @@ A simple way to extend your website content using modal containers
 
 Using Bower: 
 ```
-bower install backbone.modal
+bower install backbone.ui.modal
 ```
 
 ## Usage
@@ -56,7 +56,11 @@ In addition to adding your own methods, you can call or extend any of the follow
 
 ## Credits 
 
-Created by Makis Tracend ([@tracend](http://github.com/tracend)) for [Makesites.org](http://makesites.org)
+Created by Makis Tracend ([@tracend](http://github.com/tracend)).
+
+Released at [Makesites.org](http://makesites.org)
+
+Originally called Backbone.Modal, [published as a gist](https://gist.github.com/3446570).
 
 Distributed under the [MIT license](http://makesites.org/license/mit.txt)
 
