@@ -1,6 +1,5 @@
-
 # Note: Development of this Extension has moved to Backbone UI: 
-http://github.com/backbone-ui/modal.git
+http://github.com/backbone-ui/modal
 
 # Backbone.js Modal extension
 
