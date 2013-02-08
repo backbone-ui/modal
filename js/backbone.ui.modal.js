@@ -12,62 +12,111 @@
 	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
 	
 	// conditioning the existance of the Backbone APP()
-	//var View = ( APP ) ? APP.View : Backbone.View;
-	//var Parent = ( APP ) ? APP.Views : Backbone;
-
+	var View = ( APP ) ? APP.View : Backbone.View;
+	
 	Backbone.UI.Modal = Backbone.View.extend({
-		el: "#popup",
-		template : {}, 
+		el: "#modal",
+		options : {
+			close : false, 
+			overlay : true , 
+			html : "",
+			template : "assets/html/modal.html", 
+			layout : false
+		}, 
 		// events
 		events: {
 			"click input[type='submit']" : "clickSubmit",
 			"click .close" : "clickClose"
-		},
-		initialize: function(){
+		}, 
+		initialize: function( options ){
 			_.bindAll(this, 'setup', 'render', 'update', 'center', 'clickSubmit', 'clickClose');
-			// get the html fragment 
-			html = this.options.html || "popup.html";
+			var self = this;
+			// unbind all previous modal events
+			$(this.el).unbind();
+			// get the data
+			this.data = this.model || this.collection || false;
+			this.template = false;
+			// 
+			// set the template
+			var template = this.options.template || false;
 			
-			$.get(html, this.setup);
+			// check if there is a layout for the modal first...
+			
+			// get the template
+			if(template){ 
+				$.get(template, this.setup);
+			} else {
+				// get the html fragment 
+				// we fallback to the 'static' html 
+				this.setup( this.options.html ); 
+			}
+			//bind data to changes
+			if( this.data ){
+				this.data.bind("change",  this.render);
+				this.data.bind("reset",  this.render);
+				// render now if there are already data
+				if( this.data.length ) this.render();
+			}
+			// center window
+			$(window).resize(function(){
+				self.center();
+			});
+			self.center();
+			
 		},
 		setup: function( template ){
 			var self = this;
-	
+			// include snippets
+			// - add close button 
+			if( this.options.close ){ 
+				template = '<a class="close">[x]</a>' + template;
+			}
+			// - add overlay
+			if( this.options.overlay ){ 
+				template = '<div class="overlay"><!-- --></div>' + template;
+			}
+			// override default template with your own compiler...
+			this.template = _.template( template );
 			// loop through all the handlebar templates
+			/*
 			$(template).filter("script").each(function(){
 				var id = $(this).attr('id');
 				self.template[id] = Handlebars.compile( $(this).html() );
 			});
-	
+			*/
+			// attempt to render straight away
+			this.render();
+			
 		}, 
 		render: function(){
-			var self = this;
-			var html = this.template[this.type]( this.data.toJSON() );
+			if( !this.template ) return;
+			//console.log( this.data );
+			var html = this.template( this.data.toJSON() );
 			$(this.el).html( html );
-			// post-processing
-			$(this.el).find("img").load(function(){
-				self.center();
-			});
+			// display (in case the container is hidden)
+			$(this.el).show();
+			// center after rendering
+			//this.center();
 		}, 
-		update: function( data ){
-			this.data = data;
-			this.type = data.get("type");
+		update: function(){
 			// render the view
 			this.render();
 			// presentation updates
 			this.center();
 			
-			$(this.el).show();
 		},
 		// helpers
 		center: function(){
 			//
+			console.log()
 			var width = $(this.el).width();
 			var height = $(this.el).height();
-			var top = document.body.scrollTop + (window.innerHeight/2);
+			var top = document.body.scrollTop + (window.innerHeight/2) - (height/2);
+			var left = (window.innerWidth/2) - (width/2);
 			$(this.el).css("top", top+"px");
-			$(this.el).css("margin-left", "-"+width/2+"px");
-			$(this.el).css("margin-top", "-"+height/2+"px");
+			$(this.el).css("left", left+"px");
+			//$(this.el).css("width", width+"px");
+			//$(this.el).css("height", height+"px");
 		}, 
 		// click triggers
 		clickSubmit: function( e ){
@@ -83,8 +132,12 @@
 		},
 		clickClose: function( e ){
 			e.preventDefault();
+			// remove all contents
+			$(this.el).empty();
+			// unbind events
+			$(this.el).unbind();
+			// hide from the page
 			$(this.el).hide();
-			// update the view
 			return false;
 		}
 	});
