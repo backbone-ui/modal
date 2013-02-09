@@ -18,7 +18,8 @@
 		el: "#modal",
 		options : {
 			close : false, 
-			overlay : true , 
+			overlay : true ,
+			scroll : true,  
 			html : "",
 			template : "assets/html/modal.html", 
 			layout : false
@@ -29,7 +30,7 @@
 			"click .close" : "clickClose"
 		}, 
 		initialize: function( options ){
-			_.bindAll(this, 'setup', 'render', 'update', 'center', 'clickSubmit', 'clickClose');
+			_.bindAll(this, 'setup', 'render', 'update', 'center', 'scroll', 'clickSubmit', 'clickClose');
 			var self = this;
 			// unbind all previous modal events
 			$(this.el).unbind();
@@ -96,7 +97,9 @@
 			// display (in case the container is hidden)
 			$(this.el).show();
 			// center after rendering
-			//this.center();
+			this.center();
+			// check scrolling
+			this.scroll( false );
 		}, 
 		update: function(){
 			// render the view
@@ -138,7 +141,27 @@
 			$(this.el).unbind();
 			// hide from the page
 			$(this.el).hide();
+			// check scrolling
+			this.scroll( true );
+			
 			return false;
+		},
+		scroll : function( flag ){
+			if( !this.options.scroll && app ){
+				// check if there's a model for the app state
+				if(app.state){ 
+					if( app.state instanceof Backbone.Model ){
+						app.state.set({ scroll : flag }); 
+					} else {
+						app.state.scroll = flag; 
+					}
+				} else {
+					app.scroll = flag;
+					// hardcode a 'no-scroll' class on the body? 
+					//$("body").toggleClass("no-scroll");
+					//.no-scroll { overflow : "hidden" }
+				}
+			}
 		}
 	});
 
