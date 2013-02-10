@@ -111,10 +111,11 @@
 		// helpers
 		center: function(){
 			//
-			console.log()
 			var width = $(this.el).width();
 			var height = $(this.el).height();
-			var top = document.body.scrollTop + (window.innerHeight/2) - (height/2);
+			// Firefox / IE scroll the html tag - Webkit (properly) the body tag...
+			var scrollTop = document.getElementsByTagName("body")[0].scrollTop || document.getElementsByTagName("html")[0].scrollTop || 0;
+			var top = scrollTop + (window.innerHeight/2) - (height/2);
 			var left = (window.innerWidth/2) - (width/2);
 			$(this.el).css("top", top+"px");
 			$(this.el).css("left", left+"px");
@@ -158,8 +159,6 @@
 				} else {
 					app.scroll = flag;
 					// hardcode a 'no-scroll' class on the body? 
-					//$("body").toggleClass("no-scroll");
-					//.no-scroll { overflow : "hidden" }
 				}
 			}
 		}
