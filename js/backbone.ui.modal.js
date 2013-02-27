@@ -14,8 +14,7 @@
 	// conditioning the existance of the Backbone APP()
 	var View = ( APP ) ? APP.View : Backbone.View;
 	
-	Backbone.UI.Modal = Backbone.View.extend({
-		el: "#modal",
+	Backbone.UI.Modal = View.extend({
 		options : {
 			close : false, 
 			overlay : true ,
@@ -32,6 +31,9 @@
 		initialize: function( options ){
 			_.bindAll(this, 'setup', 'render', 'update', 'center', 'scroll', 'clickSubmit', 'clickClose');
 			var self = this;
+			// set the el if not defined
+			if( !this.el ) this.el = $("#modal");
+			
 			// unbind all previous modal events
 			$(this.el).unbind();
 			// get the data
