@@ -116,17 +116,16 @@
 		},
 		// helpers
 		center: function(){
-			//
-			var width = $(this.el).width();
-			var height = $(this.el).height();
+			// find the content container, fallback to the outter container
+			var container = ($(this.el).find(".content").length ) ? $(this.el).find(".content") :  this.el;
+			var width = $(container).width();
+			var height = $(container).height();
 			// Firefox / IE scroll the html tag - Webkit (properly) the body tag...
 			var scrollTop = document.getElementsByTagName("body")[0].scrollTop || document.getElementsByTagName("html")[0].scrollTop || 0;
 			var top = scrollTop + (window.innerHeight/2) - (height/2);
 			var left = (window.innerWidth/2) - (width/2);
-			$(this.el).css("top", top+"px");
-			$(this.el).css("left", left+"px");
-			//$(this.el).css("width", width+"px");
-			//$(this.el).css("height", height+"px");
+			$(container).css("top", top+"px");
+			$(container).css("left", left+"px");
 		}, 
 		// click triggers
 		clickSubmit: function( e ){
