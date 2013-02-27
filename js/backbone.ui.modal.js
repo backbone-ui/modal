@@ -18,6 +18,7 @@
 		options : {
 			close : false, 
 			overlay : true ,
+			wrap : false ,
 			scroll : true,  
 			html : "",
 			template : "assets/html/modal.html", 
@@ -73,6 +74,10 @@
 			// - add close button 
 			if( this.options.close ){ 
 				template = '<a class="close">[x]</a>' + template;
+			}
+			// - wrap the content
+			if( this.options.wrap ){ 
+				template = '<div class="content">'+ template +'</div>';
 			}
 			// - add overlay
 			if( this.options.overlay ){ 
