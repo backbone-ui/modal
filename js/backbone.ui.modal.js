@@ -91,8 +91,8 @@
 		}, 
 		render: function(){
 			if( !this.template ) return;
-			//console.log( this.data );
-			var html = this.template( this.data.toJSON() );
+			var data = ( this.data ) ? this.data.toJSON() : {};
+			var html = this.template( data );
 			$(this.el).html( html );
 			// display (in case the container is hidden)
 			$(this.el).show();
@@ -105,8 +105,7 @@
 			// render the view
 			this.render();
 			// presentation updates
-			this.center();
-			
+			//this.center();
 		},
 		// helpers
 		center: function(){
