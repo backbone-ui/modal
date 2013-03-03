@@ -62,5 +62,5 @@ Released at [Makesites.org](http://makesites.org)
 
 Originally called Backbone.Modal, [published as a gist](https://gist.github.com/3446570).
 
-Distributed under the [MIT license](http://makesites.org/license/mit.txt)
+Distributed under the [MIT license](http://makesites.org/licenses/MIT)
 
