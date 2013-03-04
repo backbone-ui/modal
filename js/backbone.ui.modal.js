@@ -22,7 +22,9 @@
 			scroll : true,  
 			html : "",
 			template : "assets/html/modal.html", 
-			layout : false
+			layout : false,
+			className : "modal",
+			tagName : "div"
 		}, 
 		// events
 		events: {
@@ -32,8 +34,7 @@
 		initialize: function( options ){
 			_.bindAll(this, 'setup', 'render', 'update', 'center', 'scroll', 'clickSubmit', 'clickClose');
 			var self = this;
-			// set the el if not defined
-			if( !this.el ) this.el = $("#modal");
+			//  el will be created by the className if not supplied...
 			
 			// unbind all previous modal events
 			$(this.el).unbind();
@@ -100,6 +101,10 @@
 			if( !this.template ) return;
 			var data = ( this.data ) ? this.data.toJSON() : {};
 			var html = this.template( data );
+			// add el to the DOM (if not available)
+            if(!$(this.el).parent().length){
+                $("body").find("script:first").before(this.el);
+            }
 			$(this.el).html( html );
 			// display (in case the container is hidden)
 			$(this.el).show();
