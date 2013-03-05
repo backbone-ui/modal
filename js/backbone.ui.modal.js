@@ -32,7 +32,7 @@
 			"click .close" : "clickClose"
 		}, 
 		initialize: function( options ){
-			_.bindAll(this, 'setup', 'render', 'update', 'center', 'scroll', 'clickSubmit', 'clickClose');
+			_.bindAll(this, 'setup', 'render', 'update', 'center', 'resize','scroll', 'clickSubmit', 'clickClose');
 			var self = this;
 			//  el will be created by the className if not supplied...
 			
@@ -67,6 +67,9 @@
 				self.center();
 			});
 			self.center();
+			
+			// event handling
+			$(window).resize(this.resize);
 			
 		},
 		setup: function( template ){
@@ -131,6 +134,9 @@
 			var left = (window.innerWidth/2) - (width/2);
 			$(container).css("top", top+"px");
 			$(container).css("left", left+"px");
+		}, 
+		resize: function( e ){
+			// re-calculate proportions...
 		}, 
 		// click triggers
 		clickSubmit: function( e ){
