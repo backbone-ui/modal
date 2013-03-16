@@ -134,6 +134,10 @@
 			var left = (window.innerWidth/2) - (width/2);
 			$(container).css("top", top+"px");
 			$(container).css("left", left+"px");
+			// position the overlay, if any
+			if($(this.el).find(".overlay").length ){
+				$(this.el).find(".overlay").css("top", scrollTop+"px");
+			}
 		}, 
 		resize: function( e ){
 			// re-calculate proportions...
