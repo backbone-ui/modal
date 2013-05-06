@@ -1,4 +1,15 @@
-<div class="content" role='content'>
-<a class="close">Close</a>
+{{if options.overlay}} 
+<div class="overlay"><!-- --></div>
+{{/if}}
+
+{{if options.wrap}}<div class="content" role="content">{{/if}}
+
+{{if options.close}} 
+<a class="close">[x]</a>
+{{/if}}
+
+<!-- Modal Content -->
 <img src="{{image}}">
-</div>
+<!-- Modal Content -->
+
+{{if options.wrap}}</div>{{/if}}

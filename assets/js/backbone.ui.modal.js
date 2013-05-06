@@ -15,63 +15,45 @@
 	var View = ( APP ) ? APP.View : Backbone.View;
 	
 	Backbone.UI.Modal = View.extend({
+        el: function(){ return $('<div class="ui-modal"></div>');
+        
 		options : {
 			close : false, 
 			overlay : true ,
 			wrap : false ,
 			scroll : true,  
-			html : "",
-			template : "assets/html/modal.html", 
 			layout : false,
 			className : "modal",
-			tagName : "div"
+			tagName : "div", 
+            parentTag: "body"
 		}, 
 		// events
 		events: {
 			"click input[type='submit']" : "clickSubmit",
 			"click .close" : "clickClose"
 		}, 
+        
 		initialize: function( options ){
 			_.bindAll(this, 'setup', 'render', 'update', 'center', 'resize','scroll', 'clickSubmit', 'clickClose');
-			var self = this;
+			
+            var self = this;
 			//  el will be created by the className if not supplied...
-			
+			$( this.options.parentTag ).append( this.el );
+            
 			// unbind all previous modal events
-			$(this.el).unbind();
-			// get the data
-			this.data = this.model || this.collection || false;
-			this.template = false;
-			// 
-			// set the template
-			var template = this.options.template || false;
+			//$(this.el).unbind();
 			
-			// check if there is a layout for the modal first...
-			
-			// get the template
-			if(template){ 
-				$.get(template, this.setup);
-			} else {
-				// get the html fragment 
-				// we fallback to the 'static' html 
-				this.setup( this.options.html ); 
-			}
-			//bind data to changes
-			if( this.data ){
-				this.data.bind("change",  this.render);
-				this.data.bind("reset",  this.render);
-				// render now if there are already data
-				if( this.data.length ) this.render();
-			}
-			// center window
+			// event handling - center window
 			$(window).resize(function(){
+                self.resize();
 				self.center();
 			});
 			self.center();
 			
-			// event handling
-			$(window).resize(this.resize);
+            return View.prototype.initialize.call( this, options );
 			
 		},
+        /*
 		setup: function( template ){
 			var self = this;
 			// include snippets
@@ -90,12 +72,12 @@
 			// override default template with your own compiler...
 			this.template = _.template( template );
 			// loop through all the handlebar templates
-			/*
+			
 			$(template).filter("script").each(function(){
 				var id = $(this).attr('id');
 				self.template[id] = Handlebars.compile( $(this).html() );
 			});
-			*/
+			
 			// attempt to render straight away
 			this.render();
 			
@@ -116,9 +98,20 @@
 			// check scrolling
 			this.scroll( false );
 		}, 
+        */
+        
+        postRender: function(){
+            // display (in case the container is hidden)
+			$(this.el).show();
+			// center after rendering
+			this.center();
+			// check scrolling
+			this.scroll( false );
+        }, 
+        
 		update: function(){
 			// render the view
-			this.render();
+			//this.render();
 			// presentation updates
 			//this.center();
 		},
