@@ -16,11 +16,11 @@
 	
 	Backbone.UI.Modal = View.extend({
         // every modal is a new instance...
-        el: function(){ return $('<'+ this.options.tagName +' class="ui-modal '+ this.options.className +'"></'+ this.options.tagName +'>');
+        el: function(){ return $('<'+ this.options.tagName +' class="ui-modal '+ this.options.className +'"></'+ this.options.tagName +'>') },
         
 		options : {
 			close : true, 
-			overlay : true ,
+			overlay : true,
 			wrap : true ,
 			scroll : true,  
 			//layout : false,
@@ -35,7 +35,7 @@
 		}, 
         
 		initialize: function( options ){
-			_.bindAll(this, 'setup', 'render', 'update', 'center', 'resize','scroll', 'clickSubmit', 'clickClose');
+			_.bindAll(this, 'center', 'resize','scroll', 'clickSubmit', 'clickClose');
 			
             var self = this;
 			//  el will be created by the className if not supplied...
@@ -46,7 +46,7 @@
 			
 			// event handling - center window
 			$(window).resize(function(){
-                self.resize();
+            //    self.resize();
 				self.center();
 			});
 			self.center();
@@ -118,6 +118,9 @@
 		},
 		// helpers
 		center: function(){
+            var scrollTop = document.getElementsByTagName("body")[0].scrollTop || document.getElementsByTagName("html")[0].scrollTop || 0;
+			$(this.el).css("top", scrollTop+"px");
+			/*
 			// find the content container, fallback to the outter container
 			var container = ($(this.el).find(".content").length ) ? $(this.el).find(".content") :  this.el;
 			var width = $(container).width();
@@ -132,6 +135,7 @@
 			if($(this.el).find(".overlay").length ){
 				$(this.el).find(".overlay").css("top", scrollTop+"px");
 			}
+            */
 		}, 
 		resize: function( e ){
 			// re-calculate proportions...
