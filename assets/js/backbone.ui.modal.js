@@ -15,14 +15,15 @@
 	var View = ( APP ) ? APP.View : Backbone.View;
 	
 	Backbone.UI.Modal = View.extend({
-        el: function(){ return $('<div class="ui-modal"></div>');
+        // every modal is a new instance...
+        el: function(){ return $('<'+ this.options.tagName +' class="ui-modal '+ this.options.className +'"></'+ this.options.tagName +'>');
         
 		options : {
-			close : false, 
+			close : true, 
 			overlay : true ,
-			wrap : false ,
+			wrap : true ,
 			scroll : true,  
-			layout : false,
+			//layout : false,
 			className : "modal",
 			tagName : "div", 
             parentTag: "body"
@@ -154,7 +155,7 @@
 			// unbind events
 			$(this.el).unbind();
 			// hide from the page
-			$(this.el).hide();
+			$(this.el).remove();
 			// check scrolling
 			this.scroll( true );
 			
