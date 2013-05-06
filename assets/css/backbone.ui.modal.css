@@ -6,6 +6,7 @@
 	text-align: center;
 }
 
+/* CSS centering: http://css-tricks.com/centering-in-the-unknown/ */
 /* The ghost, nudged to maintain perfect centering */
 .ui-modal:before {
   content: '';
