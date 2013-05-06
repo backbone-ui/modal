@@ -175,6 +175,8 @@
 						app.state.set({ scroll : flag }); 
 					} else {
 						app.state.scroll = flag; 
+						// trigger app.update
+						if(app.update) app.update();
 					}
 				} else {
 					app.scroll = flag;
