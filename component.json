@@ -1,6 +1,6 @@
 {
   "name": "backbone-ui-modal",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "main": ["./js/backbone.ui.modal.js"],
   "dependencies": { 
 	  "backbone" : "*", 
