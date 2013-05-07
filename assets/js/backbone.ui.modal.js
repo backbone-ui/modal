@@ -30,7 +30,7 @@
 		}, 
 		// events
 		events: {
-			"click input[type='submit']" : "clickSubmit",
+			"submit" : "clickSubmit",
 			"click .close" : "clickClose"
 		}, 
         
@@ -140,15 +140,15 @@
 		resize: function( e ){
 			// re-calculate proportions...
 		}, 
-		// click triggers
+		// process submit triggers
 		clickSubmit: function( e ){
-			e.preventDefault();
 			
-			// process request...
-			
-			// after sending the request, close the panel
-			this.clickClose();
-			
+			// Convention: if the form has an id, try to find a method that matches the camelcase version of the id
+            var id = e.target.id || false;
+            if( !id ) return false;
+            var method = _.camelCase(id);
+            if(typeof this[method] != "undefined") this[method](e);
+            
 			return false;
 			
 		},
@@ -158,9 +158,9 @@
 			$(this.el).empty();
 			// unbind events
 			$(this.el).unbind();
-			// hide from the page
+			// remove from the page
 			$(this.el).remove();
-			// check scrolling
+			// restore scrolling
 			this.scroll( true );
 			
 			return false;
@@ -183,5 +183,17 @@
 			}
 		}
 	});
+
+// Helpers
+
+// Underscore Mixin: camelCase()
+// Source: https://gist.github.com/tracend/5530356
+// Based on: http://stackoverflow.com/a/6661012
+_.mixin({
+  /* Convert Dashed to CamelCase */
+  camelCase : function( string ){
+    return  string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
+  }
+});
 
 })(this._, this.Backbone);
