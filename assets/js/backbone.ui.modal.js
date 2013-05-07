@@ -153,7 +153,7 @@
 			
 		},
 		clickClose: function( e ){
-			e.preventDefault();
+            if(e) e.preventDefault();
 			// remove all contents
 			$(this.el).empty();
 			// unbind events
