@@ -31,7 +31,8 @@
 		// events
 		events: {
 			"submit" : "clickSubmit",
-			"click .close" : "clickClose"
+			"click .close" : "clickClose",
+            "click .overlay" : "clickClose"
 		}, 
         
 		initialize: function( options ){
