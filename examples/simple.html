@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Backbone UI Modal: Simple</title>
 
-<link rel="stylesheet" href="../../assets/css/backbone.ui.modal.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../assets/css/backbone.ui.modal.css" type="text/css" media="screen">
 
 <style>
 
@@ -33,7 +33,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 
 
-<script type="text/javascript" src="../../assets/js/backbone.ui.modal.js"></script>
+<script type="text/javascript" src="../assets/js/backbone.ui.modal.js"></script>
 
 <script type="text/html" id='popup-template'>
 <div class="overlay"></div>
@@ -54,7 +54,6 @@
 		render: function(){
 			var template = this.template;
 			var data = {};
-			console.log( this.template );
 			$(this.el).html(_.template(template, data));
 		}
 
