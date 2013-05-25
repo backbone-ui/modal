@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Backbone UI Modal: Simple</title>
+
+<link rel="stylesheet" href="../../assets/css/backbone.ui.modal.css" type="text/css" media="screen">
+
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	padding: 10px;
+}
+
+</style>
+</head>
+<body>
+<!-- <div class="ui-alert top-center error"><span>fjkjk</span></div> -->
+<header> </header>
+<div id="main">
+	<h1>backbone.ui.modal</h1>
+	<p>This is a simple exhibition of the plugin using a static template</p>
+	<a href="" class="ui-modal-control" title="This is my message">Click me</a> </div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+
+<script type="text/javascript" src="../../assets/js/backbone.ui.modal.js"></script>
+
+<script type="text/html" id='popup-template'>
+<div class="overlay"></div>
+<div class="content">My content goes here...</div>
+</script>
+
+<script type="text/javascript">
+
+	// this is an example view, saved somewhere as a blueprint
+	var Popup = Backbone.UI.Modal.extend({
+
+		initialize: function( options ){
+			this.template = $("#popup-template").html();
+			this.render();
+			return Backbone.UI.Modal.prototype.initialize.call(this, options );
+		},
+
+		render: function(){
+			var template = this.template;
+			var data = {};
+			console.log( this.template );
+			$(this.el).html(_.template(template, data));
+		}
+
+	});
+
+	// this is a quick layout setup
+	var View = Backbone.View.extend({
+		el: "body",
+		events: {
+			"click a": "newPopup"
+		},
+		newPopup: function(e){
+
+			e.preventDefault();
+			var popup = new Popup();
+
+		}
+	});
+
+	// initialize (usually in a router)
+	new View();
+
+</script>
+</body>
+</html>
