@@ -40,6 +40,8 @@ var modal = new MyModal();
 
 ```
 
+[Simple example of a modal](http://rawgithub.com/backbone-ui/modal/master/examples/simple.html)
+
 
 ## Options
 
@@ -56,6 +58,7 @@ The options are split to the ones we use when setting up the modal and the ones 
 ### Template options
 
 * ***overlay***: (default: true) If we need to overlay the contents of the webpage with a seperate container. 
+* ***blocking***: (default: false) If  the overlay has a ```.blocking``` class then the modal will not close by clicking the overlay. 
 * ***wrap***: (default: true) If we want to wrap all the content in a ".content" container
 * ***scroll*** : (default: true) If we want to disable scrolling when the modal is loaded
 * ***close***: (default: true) If we want to add a close button
