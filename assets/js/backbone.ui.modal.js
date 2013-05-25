@@ -12,7 +12,7 @@
 	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
 
 	// conditioning the existance of the Backbone APP()
-	var View = ( APP ) ? APP.View : Backbone.View;
+	var View = ( typeof APP != "undefined" && !_.isUndefined( APP.View) ) ? APP.View : Backbone.View;
 
 	Backbone.UI.Modal = View.extend({
 		// every modal is a new instance...
@@ -21,6 +21,7 @@
 		options : {
 			close : true,
 			overlay : true,
+			blocking: false,
 			wrap : true ,
 			scroll : true,
 			//layout : false,
@@ -32,7 +33,7 @@
 		events: {
 			"submit" : "clickSubmit",
 			"click .close" : "clickClose",
-			"click .overlay" : "clickClose"
+			"click .overlay:not(.blocking)" : "clickClose"
 		},
 
 		initialize: function( options ){
