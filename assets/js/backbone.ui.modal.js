@@ -52,6 +52,8 @@
 				self.center();
 			});
 			self.center();
+			// on scroll, center the modal
+			$(window).scroll( _.bind(this.center, this) );
 
 			return View.prototype.initialize.call( this, options );
 
