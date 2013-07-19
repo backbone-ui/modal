@@ -188,6 +188,12 @@
 		}
 	});
 
+	// #7 alias APP.UI
+	if( typeof APP != "undefined" && (_.isUndefined( APP.UI) || _.isUndefined( APP.UI.Modal) ) ){
+		APP.UI = APP.UI || {};
+		APP.UI.Modal = Backbone.UI.Modal;
+	}
+
 // Helpers
 
 // Underscore Mixin: camelCase()
