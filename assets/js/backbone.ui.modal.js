@@ -14,7 +14,7 @@
 	// conditioning the existance of the Backbone APP()
 	var View = ( typeof APP != "undefined" && !_.isUndefined( APP.View) ) ? APP.View : Backbone.View;
 
-	Backbone.UI.Modal = View.extend({
+	var Modal = View.extend({
 		// every modal is a new instance...
 		el: function(){ return $('<'+ this.options.tagName +' class="ui-modal '+ this.options.className +'"></'+ this.options.tagName +'>') },
 
@@ -188,10 +188,32 @@
 		}
 	});
 
-	// #7 alias APP.UI
-	if( typeof APP != "undefined" && (_.isUndefined( APP.UI) || _.isUndefined( APP.UI.Modal) ) ){
-		APP.UI = APP.UI || {};
-		APP.UI.Modal = Backbone.UI.Modal;
+	// fallbacks
+	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
+	Backbone.UI.Modal = Modal;
+
+	// Support module loaders
+	if ( typeof module === "object" && module && typeof module.exports === "object" ) {
+		// Expose as module.exports in loaders that implement CommonJS module pattern.
+		module.exports = Modal;
+	} else {
+		// Register as a named AMD module, used in Require.js
+		if ( typeof define === "function" && define.amd ) {
+			//define( "backbone.ui.modal", [], function () { return Modal; } );
+			//define( ['jquery', 'underscore', 'backbone'], function () { return Modal; } );
+			define( [], function () { console.log(Modal); return Modal; } );
+		}
+	}
+	// If there is a window object, that at least has a document property
+	if ( typeof window === "object" && typeof window.document === "object" ) {
+		window.Backbone = Backbone;
+		// update APP namespace
+		if( typeof APP != "undefined" && ( typeof APP.UI == "undefined" || typeof APP.UI.Modal == "undefined" ) ){
+			// #7 alias APP.UI
+			APP.UI = APP.UI || {};
+			APP.UI.Modal = Backbone.UI.Modal;
+			window.APP = APP;
+		}
 	}
 
 // Helpers
