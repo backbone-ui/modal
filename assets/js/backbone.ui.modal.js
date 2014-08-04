@@ -1,10 +1,11 @@
-// Backbone.js Modal extension
-//
-// Created by: Makis Tracend (@tracend)
-// Source: https://github.com/backbone-ui/modal
-//
-// Licensed under the MIT license:
-// http://makesites.org/licenses/MIT
+/* Backbone UI: Modal
+ * Source: https://github.com/backbone-ui/modal
+ * Copyright © Makesites.org
+ *
+ * Initiated by Makis Tracend (@tracend)
+ * Distributed through [Makesites.org](http://makesites.org)
+ * Released under the [MIT license](http://makesites.org/licenses/MIT)
+ */
 
 (function(_, Backbone) {
 
