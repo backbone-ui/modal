@@ -157,6 +157,9 @@
 			return false;
 
 		},
+		
+		onClose: function() {},
+		
 		clickClose: function( e ){
 			if(e) e.preventDefault();
 			// remove all contents
@@ -167,6 +170,8 @@
 			$(this.el).remove();
 			// restore scrolling
 			this.scroll( true );
+			
+			this.onClose();
 
 			return false;
 		},
