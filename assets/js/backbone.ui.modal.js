@@ -32,7 +32,7 @@
 		},
 		// events
 		events: {
-			"submit" : "clickSubmit",
+			"submit form" : "clickSubmit",
 			"click .close" : "clickClose",
 			"click .overlay:not(.blocking)" : "clickClose"
 		},
@@ -157,9 +157,9 @@
 			return false;
 
 		},
-		
+
 		onClose: function() {},
-		
+
 		clickClose: function( e ){
 			if(e) e.preventDefault();
 			// remove all contents
@@ -170,7 +170,7 @@
 			$(this.el).remove();
 			// restore scrolling
 			this.scroll( true );
-			
+
 			this.onClose();
 
 			return false;
