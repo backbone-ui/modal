@@ -1,4 +1,5 @@
-/* Backbone UI: Modal
+/*
+ * Backbone UI: Modal
  * Source: https://github.com/backbone-ui/modal
  * Copyright © Makesites.org
  *
@@ -7,13 +8,28 @@
  * Released under the [MIT license](http://makesites.org/licenses/MIT)
  */
 
-(function(_, Backbone) {
+(function (lib) {
 
-	// fallbacks
-	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
+	//"use strict";
 
-	// conditioning the existance of the Backbone APP()
-	var View = ( typeof APP != "undefined" && !_.isUndefined( APP.View) ) ? APP.View : Backbone.View;
+	// Support module loaders
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery', 'underscore', 'backbone'], lib);
+	} else if ( typeof module === "object" && module && typeof module.exports === "object" ){
+		// Expose as module.exports in loaders that implement CommonJS module pattern.
+		module.exports = lib;
+	} else {
+		// Browser globals
+		lib(window.jQuery, window._, window.Backbone);
+	}
+
+}(function ($, _, Backbone) {
+
+	// support for Backbone APP() view if available...
+	var isAPP = ( typeof APP !== "undefined" );
+	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
+
 
 	var Modal = View.extend({
 		// every modal is a new instance...
@@ -194,44 +210,39 @@
 		}
 	});
 
-	// fallbacks
-	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
+
+	// Helpers
+
+	// Underscore Mixin: camelCase()
+	// Source: https://gist.github.com/tracend/5530356
+	// Based on: http://stackoverflow.com/a/6661012
+	_.mixin({
+		/* Convert Dashed to CamelCase */
+		camelCase : function( string ){
+			return  string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
+		}
+	});
+
+
+	// update Backbone namespace regardless
+	Backbone.UI = Backbone.UI ||{};
 	Backbone.UI.Modal = Modal;
 
-	// Support module loaders
-	if ( typeof module === "object" && module && typeof module.exports === "object" ) {
-		// Expose as module.exports in loaders that implement CommonJS module pattern.
-		module.exports = Modal;
-	} else {
-		// Register as a named AMD module, used in Require.js
-		if ( typeof define === "function" && define.amd ) {
-			//define( "backbone.ui.modal", [], function () { return Modal; } );
-			//define( ['jquery', 'underscore', 'backbone'], function () { return Modal; } );
-			define( [], function () { console.log(Modal); return Modal; } );
-		}
-	}
 	// If there is a window object, that at least has a document property
 	if ( typeof window === "object" && typeof window.document === "object" ) {
-		window.Backbone = Backbone;
 		// update APP namespace
-		if( typeof APP != "undefined" && ( typeof APP.UI == "undefined" || typeof APP.UI.Modal == "undefined" ) ){
-			// #7 alias APP.UI
+		if( isAPP ){
 			APP.UI = APP.UI || {};
-			APP.UI.Modal = Backbone.UI.Modal;
+			APP.UI.Modal = Modal;
 			window.APP = APP;
 		}
+		window.Backbone = Backbone;
 	}
 
-// Helpers
+	// for module loaders:
+	return Modal;
 
-// Underscore Mixin: camelCase()
-// Source: https://gist.github.com/tracend/5530356
-// Based on: http://stackoverflow.com/a/6661012
-_.mixin({
-	/* Convert Dashed to CamelCase */
-	camelCase : function( string ){
-		return  string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
-	}
-});
 
-})(this._, this.Backbone);
+}));
+
+
