@@ -1,0 +1,71 @@
+// import base styles
+@import "backbone.ui.modal.less";
+
+.ui-modal {
+	-webkit-animation-name: ui-modal-fade-in;
+	animation-name: ui-modal-fade-in;
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+
+	.content {
+		-webkit-animation-name: ui-modal-fade-zoom-in;
+		animation-name: ui-modal-fade-zoom-in;
+		-webkit-animation-duration: 1s;
+		animation-duration: 1s;
+	}
+}
+
+.ui-modal.close {
+	opacity: 0;
+	-webkit-animation-name: ui-modal-fade-out;
+	animation-name: ui-modal-fade-out;
+
+	.content {
+		-webkit-animation-name: ui-modal-fade-out;
+		animation-name: ui-modal-fade-zoom-out;
+		-webkit-animation-duration: 0.5s;
+		animation-duration: 0.5s;
+	}
+}
+
+/* The animation code */
+@keyframes ui-modal-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes ui-modal-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+
+@keyframes ui-modal-fade-zoom-in {
+	from {
+		opacity: 0;
+		transform: scale3d(.8, .8, .8);
+	}
+	to {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+@keyframes ui-modal-fade-zoom-out {
+	from {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	to {
+		opacity: 0;
+		transform: scale3d(.8, .8, .8);
+	}
+}
