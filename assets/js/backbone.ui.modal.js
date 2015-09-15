@@ -178,19 +178,26 @@
 
 		clickClose: function( e ){
 			if(e) e.preventDefault();
-			// remove all contents
-			$(this.el).empty();
-			// unbind events
-			$(this.el).unbind();
-			// remove from the page
-			$(this.el).remove();
+			// element
+			var $el = $(this.el);
+			// trigger close animation (optional)
+			$el.on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function(){
+				// remove all contents
+				$el.empty();
+				// unbind events
+				$el.unbind();
+				// remove from the page
+				$el.remove();
+			});
+			$el.addClass("close");
 			// restore scrolling
 			this.scroll( true );
-
+			// user events
 			this.onClose();
 
 			return false;
 		},
+
 		scroll : function( flag ){
 			if( !this.options.scroll && app ){
 				// check if there's a model for the app state
@@ -244,5 +251,3 @@
 
 
 }));
-
-
