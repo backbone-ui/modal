@@ -39,4 +39,19 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
+
+	&.close {
+		-webkit-animation-name: ui-modal-zero;
+		animation-name: ui-modal-zero;
+	}
+}
+
+/* Zero animation */
+@keyframes ui-modal-zero {
+	from {
+		width: auto;
+	}
+	to {
+		width: auto;
+	}
 }
