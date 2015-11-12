@@ -58,7 +58,9 @@
 
 			var self = this;
 			//  el will be created by the className if not supplied...
-			$( this.options.parentTag ).append( this.el );
+			// check if the element already exists in the DOM (move this to postRender?)
+			if( !document.body.contains(this.el) )
+				$( this.options.parentTag ).append( this.el );
 
 			// unbind all previous modal events
 			//$(this.el).unbind();
