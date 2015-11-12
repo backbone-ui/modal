@@ -1,0 +1,10 @@
+{
+	"name": "backbone.ui.modal",
+	"version": "0.6.0",
+	"main": ["./assets/js/backbone.ui.modal.js"],
+	"dependencies": {
+		"backbone" : "1.0.x",
+		"underscore" : "1.x",
+		"jquery" : "2.0.x"
+	}
+}
