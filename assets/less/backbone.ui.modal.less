@@ -6,6 +6,8 @@
 	top: 0;
 	left: 0;
 	text-align: center;
+	-webkit-animation-duration: 0.01s;
+	animation-duration: 0.01s;
 
 	&:before {
 		/* CSS centering: http://css-tricks.com/centering-in-the-unknown/ */
@@ -49,7 +51,16 @@
 }
 
 /* Zero animation */
-@keyframes ui-modal-zero {
+@keyframes ui-modal-zero {
+	from {
+		width: auto;
+	}
+	to {
+		width: auto;
+	}
+}
+
+@-webkit-keyframes ui-modal-zero {
 	from {
 		width: auto;
 	}
