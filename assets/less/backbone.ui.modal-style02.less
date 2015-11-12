@@ -1,7 +1,7 @@
 // import base styles
 @import "backbone.ui.modal.less";
 
-.ui-modal {
+.ui-modal, ui-modal {
 	-webkit-animation-name: ui-modal-fade-in;
 	animation-name: ui-modal-fade-in;
 	-webkit-animation-duration: 0.5s;
@@ -13,18 +13,18 @@
 		-webkit-animation-duration: 1s;
 		animation-duration: 1s;
 	}
-}
 
-.ui-modal.close {
-	opacity: 0;
-	-webkit-animation-name: ui-modal-fade-out;
-	animation-name: ui-modal-fade-out;
-
-	.content {
+	&.close {
+		opacity: 0;
 		-webkit-animation-name: ui-modal-fade-out;
-		animation-name: ui-modal-fade-zoom-out;
-		-webkit-animation-duration: 0.5s;
-		animation-duration: 0.5s;
+		animation-name: ui-modal-fade-out;
+
+		.content {
+			-webkit-animation-name: ui-modal-fade-out;
+			animation-name: ui-modal-fade-zoom-out;
+			-webkit-animation-duration: 0.5s;
+			animation-duration: 0.5s;
+		}
 	}
 }
 
