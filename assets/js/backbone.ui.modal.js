@@ -15,7 +15,7 @@
 	// Support module loaders
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
-		define(['jquery', 'underscore', 'backbone'], lib);
+		define('backbone.ui.modal', ['jquery', 'underscore', 'backbone'], lib);
 	} else if ( typeof module === "object" && module && typeof module.exports === "object" ){
 		// Expose as module.exports in loaders that implement CommonJS module pattern.
 		module.exports = lib;
@@ -27,9 +27,9 @@
 }(function ($, _, Backbone) {
 
 	// support for Backbone APP() view if available...
-	var isAPP = ( typeof APP !== "undefined" );
+	APP = APP || window.APP || null;
+	var isAPP = ( APP !== null );
 	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
-
 
 	var Modal = View.extend({
 		// every modal is a new instance...
@@ -61,7 +61,6 @@
 			// check if the element already exists in the DOM (move this to postRender?)
 			if( !document.body.contains(this.el) )
 				$( this.options.parentTag ).append( this.el );
-
 			// unbind all previous modal events
 			//$(this.el).unbind();
 
@@ -195,11 +194,11 @@
 			// restore scrolling
 			this.scroll( true );
 			// user events
+
 			this.onClose();
 
 			return false;
 		},
-
 		scroll : function( flag ){
 			if( !this.options.scroll && app ){
 				// check if there's a model for the app state
