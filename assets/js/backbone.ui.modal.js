@@ -31,6 +31,10 @@
 	var isAPP = ( APP !== null );
 	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
 
+	// Shims
+	// parent inheritance from Backbone.APP
+	var parent=function(a,b){a=a||"",b=b||{},this.__inherit=this.__inherit||[];var c=this.__inherit[a]||this._parent||{},d=c.prototype||this.__proto__.constructor.__super__,e=d[a]||function(){delete this.__inherit[a]},f=b instanceof Array?b:[b];return this.__inherit[a]=d._parent||function(){},e.apply(this,f)};
+
 	var Modal = View.extend({
 		// every modal is a new instance...
 		el: function(){ return $('<'+ this.options.tagName +' class="ui-modal '+ this.options.className +'"></'+ this.options.tagName +'>') },
@@ -215,11 +219,17 @@
 					// hardcode a 'no-scroll' class on the body?
 				}
 			}
-		}
+		},
+
+		// Helpers
+
+		// call methods from the parent
+		parent: View.prototype.parent || parent,
+
 	});
 
 
-	// Helpers
+	// Utils
 
 	// Underscore Mixin: camelCase()
 	// Source: https://gist.github.com/tracend/5530356
