@@ -48,7 +48,8 @@
 			//layout : false,
 			className : "modal",
 			tagName : "div",
-			parentTag: "body"
+			parentTag: "body",
+			legacyStyles: false
 		},
 		// events
 		events: {
@@ -134,6 +135,11 @@
 			this.center();
 			// check scrolling
 			this.scroll( false );
+			// legacy styles
+			console.log("this.options.legacyStyles", this.options.legacyStyles);
+			if( this.options.legacyStyles ){
+				$(this.el).find(".close").addClass("lbs");
+			}
 		},
 
 		update: function(){
