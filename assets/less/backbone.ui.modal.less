@@ -27,6 +27,13 @@
 		cursor: pointer;
 
 		&:before {
+			content: "\2716";
+		}
+	}
+
+	/* legacy browser support */
+	.close.lbs {
+		&:before {
 			content: "[x]";
 		}
 	}
