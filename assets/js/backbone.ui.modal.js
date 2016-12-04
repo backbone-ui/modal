@@ -136,7 +136,6 @@
 			// check scrolling
 			this.scroll( false );
 			// legacy styles
-			console.log("this.options.legacyStyles", this.options.legacyStyles);
 			if( this.options.legacyStyles ){
 				$(this.el).find(".close").addClass("lbs");
 			}
